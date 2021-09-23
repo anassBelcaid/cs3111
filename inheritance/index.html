@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>CS311 | C++ Inheritance</title>
+  <meta name="description" content="10-703 - Deep Reinforcement Learning and Control - Carnegie Mellon University - Fall 2021
+">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="canonical" href="/inheritance/">
+
+  
+  <!-- Load Latex JS -->
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.component.js"></script>
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <span class="site-title">
+      <a class="page-link" href="http://localhost:4000/">CS311</a>
+    </span>
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+        <a class="page-link" href="/logistics/">Logistics</a>
+        <a class="page-link" href="/lectures/">Lectures</a>
+        <a class="page-link" href="/calendar/">Calendar</a>
+        <a class="page-link" href="/homework/">Homework</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">C++ Inheritance</h1>
+    <h2 class="post-description">Explore C++ inheritace and its variants types.</h2>
+  </header>
+
+  <article class="post-content C++ Inheritance clearfix">
+    <ul id="markdown-toc">
+  <li><a href="#definition" id="markdown-toc-definition">Definition.</a></li>
+  <li><a href="#employee-example" id="markdown-toc-employee-example">Employee Example.</a></li>
+  <li><a href="#single-inheritance" id="markdown-toc-single-inheritance">Single Inheritance.</a>    <ul>
+      <li><a href="#constructor-rules" id="markdown-toc-constructor-rules">Constructor Rules.</a></li>
+      <li><a href="#access-control" id="markdown-toc-access-control">Access Control.</a></li>
+    </ul>
+  </li>
+  <li><a href="#multiple-inheritance" id="markdown-toc-multiple-inheritance">Multiple Inheritance.</a></li>
+  <li><a href="#private-inheritance" id="markdown-toc-private-inheritance">Private Inheritance</a></li>
+</ul>
+
+<h2 id="definition">Definition.</h2>
+
+<p><strong>Inheritance</strong> is a way to form new classes based on <em>existing</em> classes, taking
+on their attributes/behavior.</p>
+
+<div class="center">
+  <img src="http://localhost:4000/assets/img/lecture2/mammal_diagram.png" width="600" />
+  <div class="figcaption">
+   A Class  UML diagram illustrating the notion of Inheritance.
+  </div>
+</div>
+
+<p>We can also see <strong>Inheritance</strong> as a:</p>
+
+<ul>
+  <li>A way to indicate that classes are <strong>related</strong>.</li>
+  <li>A way to share code between two or more related classes (<strong>hierarchy</strong>).</li>
+</ul>
+
+<p>With this notion, a class can <strong>extend</strong> another class, abosrbing its
+data/behavior.</p>
+
+<p>in the <strong>OOP</strong> vocabulary, we say that:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Superclass</code> (base class): is the parent class that is being extended.</li>
+  <li><code class="language-plaintext highlighter-rouge">Subclass</code> (derived class): Child class that inherits from the superclass.
+    <ul>
+      <li>The subclass gets a copy of every field and method from the superclass.</li>
+      <li>Subclass can <strong>add</strong> it’s own behavior and/or change inherited behavior.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The <strong>QT</strong> library make heavy use of this mecanism to alleviate the creation of
+grpahical windows and applications. Here is a simple overview ot its principal
+component.</p>
+
+<div class="center">
+  <img src=" http://localhost:4000/assets/img/lecture2/qt_inheritance_diagram.jpg" />
+  <div class="figcaption">
+  Inheritance  Class Diagram of the Qt library.
+  </div>
+</div>
+<p>`
+From this diagram, we could, for example, check the relation between <code class="language-plaintext highlighter-rouge">QWidget</code>
+,whish represents the base component of each graphical element, and the
+<code class="language-plaintext highlighter-rouge">QPushButton</code> for a button that could be clicked.</p>
+
+<p>The <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget</a> defines the basic behavior of a graphical component such as:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">bool</span> <span class="nf">enabled</span><span class="p">();</span>  <span class="c1">//if the component could be accessed</span>
+<span class="n">QFont</span> <span class="nf">font</span><span class="p">();</span>    <span class="c1">// the used font</span>
+<span class="n">QRect</span> <span class="nf">geometry</span><span class="p">();</span> <span class="c1">// the occupied geometry</span>
+<span class="n">QSize</span> <span class="nf">maximumSize</span><span class="p">();</span>   <span class="c1">// define the maximum size</span>
+</code></pre></div></div>
+
+<p>In the hierarchy, we consider the class <a href="https://doc.qt.io/qt-5/qabstractbutton.html">QAbstractButton</a> to regroup all the properties and behavior of all the buttons  such as <code class="language-plaintext highlighter-rouge">QPushButton</code> or <code class="language-plaintext highlighter-rouge">QRadioButton</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">QIcon</span> <span class="nf">icon</span><span class="p">();</span>      <span class="c1">// return the icon of the button</span>
+<span class="n">QKeySequence</span> <span class="nf">shortcut</span><span class="p">();</span>  <span class="c1">// return the keyboard shorcut to activate the button</span>
+<span class="kt">bool</span> <span class="nf">checkable</span><span class="p">();</span>        <span class="c1">//predicate to verify if the button could be checked.</span>
+<span class="kt">void</span> <span class="nf">toggle</span><span class="p">();</span>          <span class="c1">// an Added slot to inform other components</span>
+</code></pre></div></div>
+
+<h2 id="employee-example">Employee Example.</h2>
+
+<p>Lets consider a company with following <strong>employee regulations</strong>:</p>
+
+<ul>
+  <li>All employees work 40 hours /week.</li>
+  <li>Emplyees make $40,000 per year plus $500 for each year worked.
+    <ul>
+      <li>except for lawyers who get twice the usual pay.</li>
+      <li>Programmer who get the same $40k base but $2000 for each year
+  worked.</li>
+    </ul>
+  </li>
+  <li>Employees have 2 weeks of paid vacation days per year.
+    <ul>
+      <li>except for programmers who get an extra week (a total of 3).</li>
+    </ul>
+  </li>
+  <li>Employees should use a yellow form to apply for leave.
+    <ul>
+      <li>Except for programmers sho use a pink form.</li>
+    </ul>
+  </li>
+  <li>Each type of employee has some unique behavior:
+    <ol>
+      <li><strong>Lawyers</strong> know how to sue.</li>
+      <li><strong>Programmers</strong> know how to write code.</li>
+      <li><strong>Secretaries</strong> know how to take dication.</li>
+      <li><strong>Legal Secretaries</strong> know how to take dication and how to file
+legal briefs.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Here is the code for the <strong>Employee</strong> class:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define once
+#include &lt;string&gt;
+</span><span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">{</span>
+    <span class="nl">public:</span>
+        <span class="n">Employee</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">years</span><span class="p">);</span>
+        <span class="k">virtual</span> <span class="kt">int</span> <span class="n">hours</span><span class="p">()</span><span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="n">string</span> <span class="n">name</span><span class="p">()</span><span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">double</span> <span class="n">salary</span><span class="p">()</span><span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">int</span> <span class="n">vacationDays</span><span class="p">()</span><span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="n">string</span> <span class="n">vacationForm</span><span class="p">()</span><span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">int</span> <span class="n">years</span><span class="p">()</span><span class="k">const</span><span class="p">;</span>
+
+    <span class="nl">private:</span>
+        <span class="n">string</span> <span class="n">myName</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">myYears</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p>And here is the <strong>implementation</strong> of these methods:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "employee.h"
+</span>
+<span class="n">Employee</span><span class="o">::</span><span class="n">Employee</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">years</span><span class="p">){</span>
+    <span class="n">myName</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">myYears</span> <span class="o">=</span> <span class="n">years</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Employee</span><span class="o">::</span><span class="n">hours</span><span class="p">()</span> <span class="k">const</span><span class="p">{</span>
+    <span class="k">return</span> <span class="mi">40</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">string</span> <span class="n">Employee</span><span class="o">::</span><span class="n">name</span><span class="p">()</span><span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">myName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="n">Employee</span><span class="o">::</span><span class="n">salary</span><span class="p">()</span><span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mf">40000.0</span> <span class="o">+</span> <span class="mi">500</span> <span class="o">*</span> <span class="n">myYears</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Employee</span><span class="o">::</span><span class="n">vacationDays</span><span class="p">()</span><span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">string</span> <span class="n">Employee</span><span class="o">::</span><span class="n">vacationForm</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="s">"yellow"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">Employee</span><span class="o">::</span><span class="n">years</span><span class="p">()</span> <span class="k">const</span><span class="p">{</span>
+    <span class="k">return</span> <span class="n">myYears</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Your task is to implement the <strong>Lawyer</strong> and <strong>Programmer</strong> classes:</p>
+
+<ul>
+  <li>Lawyer:
+    <ul>
+      <li>A Lawyer remembers what <strong>law school</strong> he/she went to.</li>
+      <li>Lawyers make <strong>twice</strong> as much salary as normal employees.</li>
+      <li>Lawyers know how to <strong>sue</strong> people (unique behavior).</li>
+    </ul>
+  </li>
+  <li>Programmer:
+    <ul>
+      <li>Programmer make the same base salary as other employees, but
+  they earn a bonus of <strong>2k/year</strong> instead of the usual <strong>500/year</strong>.</li>
+      <li>Programmers fill the <strong>pink</strong> form rather than the usual yellow
+  one.</li>
+      <li>Programmers get <strong>3 weeks of vacation</strong>.</li>
+      <li>Programmers know how to write <strong>code</strong> as their unique
+  behavior.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="single-inheritance">Single Inheritance.</h2>
+
+<p>The syntax of Inheritance in <code class="language-plaintext highlighter-rouge">cpp</code>, is as follow:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BaseClass</span> 
+<span class="p">{</span>
+    <span class="c1">//Additional attributs and methods</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="jekyll-diagrams diagrams blockdiag">
+  <svg viewBox="0 0 832 200" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>
+blockdiag {
+   A -&gt; B -&gt; C -&gt; D;
+   A -&gt; E -&gt; F -&gt; G;
+}
+</desc>
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="643" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="643" y="126" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="128.0" y="66">A</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="320.0" y="66">B</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="320.0" y="146">E</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="512.0" y="66">C</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="640" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="704.0" y="66">D</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="512.0" y="146">F</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="640" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="704.0" y="146">G</text>
+  <path d="M 192 60 L 248 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,60 248,56 248,64 255,60" stroke="rgb(0,0,0)" />
+  <path d="M 192 60 L 224 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 224 60 L 224 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 224 140 L 248 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,140 248,136 248,144 255,140" stroke="rgb(0,0,0)" />
+  <path d="M 384 60 L 440 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,60 440,56 440,64 447,60" stroke="rgb(0,0,0)" />
+  <path d="M 576 60 L 632 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="639,60 632,56 632,64 639,60" stroke="rgb(0,0,0)" />
+  <path d="M 384 140 L 440 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,140 440,136 440,144 447,140" stroke="rgb(0,0,0)" />
+  <path d="M 576 140 L 632 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="639,140 632,136 632,144 639,140" stroke="rgb(0,0,0)" />
+</svg>
+
+</div>
+
+<h3 id="constructor-rules">Constructor Rules.</h3>
+
+<h3 id="access-control">Access Control.</h3>
+
+<h2 id="multiple-inheritance">Multiple Inheritance.</h2>
+
+<h2 id="private-inheritance">Private Inheritance</h2>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">C++ GUI Programming with QT</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">A.belcaid</li><li><a class="u-email" href="mailto:anass.belcaid@gmail.com">anass.belcaid@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/anassBelcaid" target="_blank"><i class="fab fa-github"></i> <span class="username">anassBelcaid</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>&copy; Copyright 2021 Euromed University. <br />
+        Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="/assets/js/katex.js"></script>
+
+
+
+<!-- Load Anchor JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+<script>
+  anchors.options.visible = 'hover';
+  anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>
+
+
+
+<!-- Adjust LaTeX JS -->
+<script src="/assets/js/latex.js"></script>
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/assets/css/academicons.min.css">
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+
+</html>

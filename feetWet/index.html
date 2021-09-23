@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>CS311 | Gettting your feet wet with Qt</title>
+  <meta name="description" content="10-703 - Deep Reinforcement Learning and Control - Carnegie Mellon University - Fall 2021
+">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="canonical" href="/feetWet/">
+
+  
+  <!-- Load Latex JS -->
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.component.js"></script>
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <span class="site-title">
+      <a class="page-link" href="http://localhost:4000/">CS311</a>
+    </span>
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+        <a class="page-link" href="/logistics/">Logistics</a>
+        <a class="page-link" href="/lectures/">Lectures</a>
+        <a class="page-link" href="/calendar/">Calendar</a>
+        <a class="page-link" href="/homework/">Homework</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Gettting your feet wet with Qt</h1>
+    <h2 class="post-description">Qt Installation and contrainer manipulation.</h2>
+  </header>
+
+  <article class="post-content Gettting your feet wet with Qt clearfix">
+    <ul id="markdown-toc">
+  <li><a href="#qt-installation" id="markdown-toc-qt-installation">Qt Installation</a>    <ul>
+      <li><a href="#windows-installation" id="markdown-toc-windows-installation">Windows Installation</a></li>
+      <li><a href="#linux" id="markdown-toc-linux">Linux</a>        <ul>
+          <li><a href="#ubuntu-base-systems" id="markdown-toc-ubuntu-base-systems">Ubuntu base systems</a></li>
+          <li><a href="#rpm-based-distributions" id="markdown-toc-rpm-based-distributions">RPM based distributions</a></li>
+          <li><a href="#arch-base" id="markdown-toc-arch-base">Arch Base</a></li>
+        </ul>
+      </li>
+      <li><a href="#mac-os" id="markdown-toc-mac-os">Mac Os</a></li>
+    </ul>
+  </li>
+  <li><a href="#strings" id="markdown-toc-strings">Strings</a>    <ul>
+      <li><a href="#cities-coordinates" id="markdown-toc-cities-coordinates">Cities Coordinates</a></li>
+      <li><a href="#alien-dictionary" id="markdown-toc-alien-dictionary">Alien Dictionary</a></li>
+    </ul>
+  </li>
+  <li><a href="#containers" id="markdown-toc-containers">Containers</a>    <ul>
+      <li><a href="#minumun-moves" id="markdown-toc-minumun-moves">Minumun Moves</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="qt-installation">Qt Installation</h2>
+
+<p>If you followed last year class on <strong>Problem solving</strong>, you’re probabely setup
+and ready to compile your programe. Feel free to jump to the problems sections
+and test your knowledge on <code class="language-plaintext highlighter-rouge">QString</code> and <code class="language-plaintext highlighter-rouge">Constainers</code>.</p>
+
+<h3 id="windows-installation">Windows Installation</h3>
+<p>Visit the open source download page at  <a href="https://www.qt.io/download-open-source/">https://www.qt.io/download-open-source/</a>. Click on <strong>Downdload Qt</strong> button and then select the <strong>Downloads for open source users</strong>.</p>
+
+<ol>
+  <li>Launch the utility installer.</li>
+  <li>Login to the Qt database system:</li>
+</ol>
+
+<div class="center">
+  <img src="http://localhost:4000/assets/img/lecture1/Qt_logging_preview.png" height="300" />
+</div>
+<ol>
+  <li>Select the latest version of <strong>Qt5</strong>.</li>
+</ol>
+
+<div class="center">
+  <img src="http://localhost:4000/assets/img/lecture1/qt_components_selection.png" height="300" />
+</div>
+
+<ol>
+  <li>After the setup finish, launch <code class="language-plaintext highlighter-rouge">Qt Creator</code> program to run and compile your
+programs.</li>
+</ol>
+
+<h3 id="linux">Linux</h3>
+
+<h4 id="ubuntu-base-systems">Ubuntu base systems</h4>
+
+<p>First start by installing the <strong>programmer tools</strong>;</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>build-essential
+</code></pre></div></div>
+
+<p>Then we can install <strong>Qt Creator</strong> which automatically install <strong>Qt</strong> as a
+dependency.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>qtcreator
+</code></pre></div></div>
+
+<p>If you want to make <strong>Qt5</strong>  as your default Qt install the following package:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>qt5-default
+</code></pre></div></div>
+
+<blockquote>
+  <p>If you want the documentation and the set of  examples:</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install qt-doc qt-examples
+</code></pre></div></div>
+
+<h4 id="rpm-based-distributions">RPM based distributions</h4>
+
+<p>Install the <strong>qt-devel</strong> package</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dnf <span class="nb">install </span>qt5-devel
+</code></pre></div></div>
+
+<h4 id="arch-base">Arch Base</h4>
+
+<p>You’ll have to install the <strong>qtcretor</strong> package</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> qtcreator
+</code></pre></div></div>
+
+<h3 id="mac-os">Mac Os</h3>
+
+<ol>
+  <li>
+    <p>Make sure your MacOs system is up to date.</p>
+  </li>
+  <li>
+    <p>Install the developer tools. Open a terminal an enter the following command:</p>
+  </li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcode-select <span class="nt">--install</span>
+</code></pre></div></div>
+<ol>
+  <li>Download the <strong>qt creator</strong> setup from <a href="https://www.qt.io/download-open-source#section-3">Qt creator installation page</a></li>
+</ol>
+
+<div class="center">
+  <img src="http://localhost:4000/assets/img/lecture1/qt-creator-mac-install.gif" width="600" height="400" />
+</div>
+
+<ol>
+  <li>Enter your email and password</li>
+  <li>Choose the <strong>QT5</strong> component.</li>
+</ol>
+
+<h2 id="strings">Strings</h2>
+
+<h3 id="cities-coordinates">Cities Coordinates</h3>
+
+<p>In this exercise, we will practice the use of the method <code class="language-plaintext highlighter-rouge">split</code> in the
+<strong>QString</strong> class to read a <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV file</a>. These type of files contain a set fields separated by commas.</p>
+
+<p>The project of this exercise comes with a file <code class="language-plaintext highlighter-rouge">Morocco.csv</code> that stores
+a set of attributes (like longitude or latitude) of a all the Moroccan cities.
+The head of the file looks like</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>city,city_ascii,lat,lng,country,iso2,iso3,admin_name,capital,population,id
+Casablanca,Casablanca,33.5992,-7.62,Morocco,MA,MAR,Casablanca-Settat,admin,4370000.0,1504175315
+El Kelaa des Srarhna,El Kelaa des Srarhna,32.05,-7.4,Morocco,MA,MAR,Marrakech-Safi,,1450021.0,1504846488
+Fès,Fes,34.0433,-5.0033,Morocco,MA,MAR,Fès-Meknès,admin,1112072.0,1504861997
+Rabat,Rabat,34.0253,-6.8361,Morocco,MA,MAR,Rabat-Salé-Kénitra,primary,572717.0,1504023252
+Tifariti,Tifariti,26.0928,-10.6089,Morocco,MA,MAR,,primary,,1504999990
+Tangier,Tangier,35.7767,-5.8039,Morocco,MA,MAR,Tanger-Tétouan-Al Hoceïma,admin,947952.0,1504861504
+Marrakech,Marrakech,31.6295,-7.9811,Morocco,MA,MAR,Marrakech-Safi,admin,928850.0,1504172585
+Sale,Sale,34.05,-6.8167,Morocco,MA,MAR,Rabat-Salé-Kénitra,,850403.0,1504989034
+Meknès,Meknes,33.8833,-5.55,Morocco,MA,MAR,Fès-Meknès,,520428.0,1504333193
+Kenitra,Kenitra,34.25,-6.5833,Morocco,MA,MAR,Rabat-Salé-Kénitra,,431282.0,1504534876
+</code></pre></div></div>
+
+<p>The goal is to read this file, and print the</p>
+
+<ul>
+  <li>name</li>
+  <li>longitude</li>
+  <li>latitude</li>
+  <li>population
+of each city.</li>
+</ul>
+
+<p>The information about each city should be printed like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;city name&gt; (long, lat) population = (&lt;population&gt;).
+</code></pre></div></div>
+
+<p>The symbol <code class="language-plaintext highlighter-rouge">&lt; &gt;</code> represents a <strong>placeholder</strong> that should be replaced by the real
+value for each city.</p>
+
+<p>The starting project of this exercice is in <a href="http://localhost:4000/homeworks/01_feet_wet/cities_coordinates.zip">cities_coordinates.zip</a></p>
+
+<p>This project is without <strong>tests</strong>, you task is rather to implement each of the
+following step in the <strong>main</strong> function.</p>
+
+<ol>
+  <li>
+    <p>In order to get the content of the file, you should create an <a href="https://www.cplusplus.com/reference/fstream/ifstream/">input file stream</a>.</p>
+
+    <ul>
+      <li>The syntax to open an <code class="language-plaintext highlighter-rouge">ifstream</code> is
+        <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">ifstream</span> <span class="nf">In</span><span class="p">(</span><span class="s">"name of the file"</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+      <li>In order to make sure that you file is opened, print the status of <code class="language-plaintext highlighter-rouge">In</code> using</li>
+    </ul>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">In</span><span class="p">.</span><span class="n">is_open</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre></div>    </div>
+    <p>This value should print <strong>true</strong>.</p>
+  </li>
+  <li>
+    <p>Next, we need to read the content of this file line by line. We will mainly
+use the function <code class="language-plaintext highlighter-rouge">getline(stream, string)</code> that read a line from any stream
+and stores it in <strong>string</strong>.</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//reading the header</span>
+<span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+<span class="n">readline</span><span class="p">(</span><span class="n">In</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+
+<span class="c1">//main loop to read all the remaining lines</span>
+<span class="k">while</span> <span class="p">(</span> <span class="n">readline</span><span class="p">(</span><span class="n">In</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+<span class="p">{</span>
+     
+   <span class="c1">//work with line </span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now you task ( if you accepted) is to tranform each line using the <a href="https://doc.qt.io/qt-5/qstring.html#split">Split</a> method to only print the mentioned fields.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>An extra credit goes for students who uses  an <code class="language-plaintext highlighter-rouge">OOP</code> approach for representing
+the city.</p>
+</blockquote>
+
+<blockquote>
+  <p>Could you print all the cities sorted by their <strong>population</strong>.</p>
+</blockquote>
+
+<h3 id="alien-dictionary">Alien Dictionary</h3>
+
+<p>In an alien language, surprisingly, they also use <strong>English</strong> lowercaes letters,
+but possibly in a different <code class="language-plaintext highlighter-rouge">order</code>. The <code class="language-plaintext highlighter-rouge">order</code> of the alphabet is some
+<strong>permutation</strong> of lowercase letters.</p>
+
+<p>Given a sequence of <code class="language-plaintext highlighter-rouge">words</code> written in the alien language, and the <code class="language-plaintext highlighter-rouge">order</code> of
+the alphabet, return <code class="language-plaintext highlighter-rouge">true</code> if and only if the given <code class="language-plaintext highlighter-rouge">words</code> are <strong>sorted</strong>
+lexicographically in this alien language.</p>
+
+<p>For more information on lexicographical order, check the <a href="https://en.wikipedia.org/wiki/Lexicographic_order">wiki entry</a>.</p>
+
+<p>The starting file is on <a href="http://localhost:4000/homeworks/01_feet_wet/alien_dictionary.zip"> alien_dictionary.zip</a>.</p>
+
+<p><strong>Example 1</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: words <span class="o">=</span> <span class="o">[</span><span class="s2">"hello"</span>,<span class="s2">"letscode"</span><span class="o">]</span>, order <span class="o">=</span> <span class="s2">"hlabcdefgijkmnopqrstuvwxyz"</span>
+Output: <span class="nb">true
+</span>Explanation: As <span class="s1">'h'</span> comes before <span class="s1">'l'</span> <span class="k">in </span>this language,
+<span class="k">then </span>the sequence is sorted.
+</code></pre></div></div>
+
+<p><strong>Example 2</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: words <span class="o">=</span> <span class="o">[</span><span class="s2">"word"</span>,<span class="s2">"world"</span>,<span class="s2">"row"</span><span class="o">]</span>, order <span class="o">=</span> <span class="s2">"worldabcefghijkmnpqstuvxyz"</span>
+Output: <span class="nb">false
+</span>Explanation: As <span class="s1">'d'</span> comes after <span class="s1">'l'</span> <span class="k">in </span>this language,
+<span class="k">then </span>words[0] <span class="o">&gt;</span> words[1], hence the sequence is unsorted.
+</code></pre></div></div>
+
+<p><strong>Example 3</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Input: words <span class="o">=</span> <span class="o">[</span><span class="s2">"apple"</span>,<span class="s2">"app"</span><span class="o">]</span>, order <span class="o">=</span> <span class="s2">"abcdefghijklmnopqrstuvwxyz"</span>
+Output: <span class="nb">false
+</span>Explanation: The first three characters <span class="s2">"app"</span> match,
+and the second string is shorter <span class="o">(</span><span class="k">in </span>size.<span class="o">)</span> 
+According to lexicographical rules <span class="s2">"apple"</span> <span class="o">&gt;</span> <span class="s2">"app"</span>, 
+because <span class="s1">'l'</span> <span class="o">&gt;</span> <span class="s1">'∅'</span>, where <span class="s1">'∅'</span> is defined as the blank character
+which is less than any other character <span class="o">[</span>More info on 
+</code></pre></div></div>
+
+<blockquote>
+  <p>If you feel stuck, check the documentation of the function <a href="https://en.cppreference.com/w/cpp/algorithm/is_sorted">is_sorted</a>. Also you need to check your background on <strong>operator overloading</strong>.</p>
+</blockquote>
+
+<h2 id="containers">Containers</h2>
+
+<h3 id="minumun-moves">Minumun Moves</h3>
+
+<p>Given an integer array nums of size <code class="language-plaintext highlighter-rouge">n</code>, return the minimum number of moves required to make all array elements <strong>equal</strong>.</p>
+
+<p>A move consist of <strong>incrementing</strong> <code class="language-plaintext highlighter-rouge">n-1</code> elements of the array by 1.</p>
+
+<p>Example1:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums <span class="o">=</span> <span class="o">[</span>1,2,3]
+Output: 3
+Explanation: Only three moves are needed <span class="o">(</span>remember each move increments two elements<span class="o">)</span>:
+<span class="o">[</span>1,2,3]  <span class="o">=&gt;</span>  <span class="o">[</span>2,3,3]  <span class="o">=&gt;</span>  <span class="o">[</span>3,4,3]  <span class="o">=&gt;</span>  <span class="o">[</span>4,4,4]
+</code></pre></div></div>
+
+<p><strong>Example 2</strong>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: nums <span class="o">=</span> <span class="o">[</span>1,1,1]
+Output: 0
+</code></pre></div></div>
+
+<p>The starting code with some basic test is in <a href=" http://localhost:4000/homeworks/01_feet_wet/minimum_moves.zip">minimum Moves.zip</a>.</p>
+
+<blockquote>
+  <p>If you’re feeling aventurious, try to come up with a non brute force
+algorithm.</p>
+</blockquote>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">C++ GUI Programming with QT</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">A.belcaid</li><li><a class="u-email" href="mailto:anass.belcaid@gmail.com">anass.belcaid@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/anassBelcaid" target="_blank"><i class="fab fa-github"></i> <span class="username">anassBelcaid</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>&copy; Copyright 2021 Euromed University. <br />
+        Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="/assets/js/katex.js"></script>
+
+
+
+<!-- Load Anchor JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+<script>
+  anchors.options.visible = 'hover';
+  anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>
+
+
+
+<!-- Adjust LaTeX JS -->
+<script src="/assets/js/latex.js"></script>
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/assets/css/academicons.min.css">
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+
+</html>
